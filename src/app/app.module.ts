@@ -28,6 +28,8 @@ import { CategorieComponent } from './page/categorie/categorie/categorie.compone
 import { DashboardComponent } from './page/dashboard/dashboard/dashboard.component';
 import { RangComponent } from './rang/rang/rang.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur/utilisateur.component';
+import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component';
+import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
 
 const routes:Routes = [
   {
@@ -37,10 +39,16 @@ const routes:Routes = [
     component: PariComponent
   },
   {
-    // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
-    // doit afficher le composant AssignmentsComponent (celui qui affiche la liste)
-    path:"Pari",
+     path:"Pari",
     component: PariComponent
+  },
+  {
+    path:"PariFiche",
+    component: PariFicheComponent
+  },
+  {
+    path:"PariSaisie",
+    component: PariSaisieComponent
   },
   {
       path:"Login",
@@ -91,7 +99,9 @@ const routes:Routes = [
     PariComponent,
     HeaderComponent,
     FooterComponent,
-    MenuComponent],
+    MenuComponent,
+    PariFicheComponent,
+    PariSaisieComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

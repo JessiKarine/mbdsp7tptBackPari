@@ -1,0 +1,5 @@
+.button-container-fiche {
+    display: flex;
+    align-content: space-between;
+    width: 100%;
+}
