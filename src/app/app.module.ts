@@ -101,7 +101,8 @@ const routes:Routes = [
     FooterComponent,
     MenuComponent,
     PariFicheComponent,
-    PariSaisieComponent],
+    PariSaisieComponent
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
