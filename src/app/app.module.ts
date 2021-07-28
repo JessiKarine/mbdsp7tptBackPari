@@ -26,7 +26,6 @@ import { LoginComponent } from './page/login/login/login.component';
 import { EquipeComponent } from './page/equipe/equipe/equipe.component';
 import { CategorieComponent } from './page/categorie/categorie/categorie.component';
 import { DashboardComponent } from './page/dashboard/dashboard/dashboard.component';
-import { RangComponent } from './rang/rang/rang.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur/utilisateur.component';
 import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component';
 import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
@@ -65,10 +64,6 @@ const routes:Routes = [
   {
     path:"Dashboard",
     component: DashboardComponent
-  },
-  {
-    path:"Rang",
-    component: RangComponent
   },
   {
     path:"Utilisateur",
