@@ -29,6 +29,7 @@ import { DashboardComponent } from './page/dashboard/dashboard/dashboard.compone
 import { UtilisateurComponent } from './page/utilisateur/utilisateur/utilisateur.component';
 import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component';
 import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
+import { UtilisateurtableaubodyComponent } from './page/utilisateur/utilisateurtableaubody/utilisateurtableaubody.component';
 
 const routes:Routes = [
   {
@@ -97,7 +98,8 @@ const routes:Routes = [
     MenuComponent,
     PariFicheComponent,
     PariSaisieComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    UtilisateurtableaubodyComponent
     ],
   imports: [
     BrowserModule,
