@@ -30,6 +30,7 @@ import { UtilisateurComponent } from './page/utilisateur/utilisateur/utilisateur
 import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component';
 import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
 import { UtilisateurtableaubodyComponent } from './page/utilisateur/utilisateurtableaubody/utilisateurtableaubody.component';
+import { UtilisateurdetailComponent } from './page/utilisateur/utilisateurdetail/utilisateurdetail.component';
 
 const routes:Routes = [
   {
@@ -70,6 +71,10 @@ const routes:Routes = [
     path:"Utilisateur",
     component: UtilisateurComponent
   },
+  {
+    path: "Utilisateur/:id",
+    component : UtilisateurdetailComponent
+  }
  /* {
     // idem avec  http://localhost:4200/home
     path:"home",
@@ -99,7 +104,8 @@ const routes:Routes = [
     PariFicheComponent,
     PariSaisieComponent,
     UtilisateurComponent,
-    UtilisateurtableaubodyComponent
+    UtilisateurtableaubodyComponent,
+    UtilisateurdetailComponent
     ],
   imports: [
     BrowserModule,
