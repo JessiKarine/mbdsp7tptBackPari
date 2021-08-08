@@ -26,7 +26,7 @@ import { LoginComponent } from './page/login/login/login.component';
 import { EquipeComponent } from './page/equipe/equipe/equipe.component';
 import { CategorieComponent } from './page/categorie/categorie/categorie.component';
 import { DashboardComponent } from './page/dashboard/dashboard/dashboard.component';
-import { UtilisateurComponent } from './utilisateur/utilisateur/utilisateur.component';
+import { UtilisateurComponent } from './page/utilisateur/utilisateur/utilisateur.component';
 import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component';
 import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
 
@@ -96,7 +96,8 @@ const routes:Routes = [
     FooterComponent,
     MenuComponent,
     PariFicheComponent,
-    PariSaisieComponent
+    PariSaisieComponent,
+    UtilisateurComponent
     ],
   imports: [
     BrowserModule,
