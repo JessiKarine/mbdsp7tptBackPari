@@ -443,8 +443,6 @@ body {
 }
 
 .login-wrapper .box .action {
-  position: relative;
-  top: 30px;
   padding: 15px 0px;
 }
 .login-wrapper .box .signup {

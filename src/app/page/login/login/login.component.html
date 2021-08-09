@@ -17,10 +17,8 @@
                                     </div> 
                                 </form>
                             </div>
-                            <div class="col-md-12">
-                                <div *ngIf="error">
-                                    <span class="msg-err">{{error}}</span>
-                                </div>            
+                            <div class="col-md-12" [ngClass]="{ 'active' : error , 'err-container' : true }">
+                                <div class="msg-err">{{error}}</div>       
                             </div> 
                         </div> 
                     </div>

@@ -1,3 +1,26 @@
-.msg-err{
+@keyframes error-container {
+    0% {display: none;opacity: 0; padding: 0;}
+    100% {display: block;opacity: 1; padding : 10px}
+}
+.err-container { 
+    display: none;
+    opacity: 0;
     color: red;
+    background-color: rgba(255, 167, 167, 0.445);
+    border: 1px solid red;
+    border-radius: 4px;
+}
+.err-container.active { 
+    display: block;
+    width: 100%;
+    animation-name: error-container;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}
+
+.msg-err{
+    white-space: nowrap;
+    max-width: 100%;
 }
