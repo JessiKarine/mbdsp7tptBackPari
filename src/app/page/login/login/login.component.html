@@ -5,24 +5,24 @@
                 <div class="box">
                     <div class="content-wrap">
                         <h6>Se connecter</h6>
-                        <div class="social">
-                            <a class="face_login" href="#">
-                                <span class="face_icon">
-                                    <img src="/assets/images/facebook.png" alt="fb">
-                                </span>
-                                <span class="text">Sign in with Facebook</span>
-                            </a>
-                            <div class="division">
-                                <hr class="left">
-                                <span>or</span>
-                                <hr class="right">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form ngForm #formLogin (submit)="onSubmit($event)">
+                                    <input class="form-control" type="text" required [(ngModel)]="username" name="username" placeholder="nom de l'utilisateur">
+                                    <input class="form-control" type="password" required  name="password" [(ngModel)]="password" placeholder="mot de passe">
+                                    <div class="action">
+                                        <button class="btn btn-primary signup">
+                                            Se connecter
+                                        </button>               
+                                    </div> 
+                                </form>
                             </div>
-                        </div>
-                        <input class="form-control" type="text" placeholder="E-mail address">
-                        <input class="form-control" type="password" placeholder="Password">
-                        <div class="action">
-                            <a class="btn btn-primary signup" href="/Pari">Login</a>
-                        </div>                
+                            <div class="col-md-12">
+                                <div *ngIf="error">
+                                    <span class="msg-err">{{error}}</span>
+                                </div>            
+                            </div> 
+                        </div> 
                     </div>
                 </div>
             </div>

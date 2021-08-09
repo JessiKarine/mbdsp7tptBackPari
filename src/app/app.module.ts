@@ -15,7 +15,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './widgets/menu/menu.component';
@@ -31,25 +31,30 @@ import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component'
 import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
 import { UtilisateurtableaubodyComponent } from './page/utilisateur/utilisateurtableaubody/utilisateurtableaubody.component';
 import { UtilisateurdetailComponent } from './page/utilisateur/utilisateurdetail/utilisateurdetail.component';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes:Routes = [
   {
     // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
     // doit afficher le composant AssignmentsComponent (celui qui affiche la liste)
     path:"",
-    component: LoginComponent
+    component: PariComponent,
+    canActivate : [AuthGuard]
   },
   {
      path:"Pari",
-    component: PariComponent
+    component: PariComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"PariFiche",
-    component: PariFicheComponent
+    component: PariFicheComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"PariSaisie",
-    component: PariSaisieComponent
+    component: PariSaisieComponent,
+    canActivate : [AuthGuard]
   },
   {
       path:"Login",
@@ -57,44 +62,43 @@ const routes:Routes = [
   },
   {
     path:"Equipe",
-    component: EquipeComponent
+    component: EquipeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"Categorie",
-    component: CategorieComponent
+    component: CategorieComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"Dashboard",
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"Utilisateur",
-    component: UtilisateurComponent
+    component: UtilisateurComponent,
+    canActivate : [AuthGuard]
   },
   {
     path: "Utilisateur/:id",
-    component : UtilisateurdetailComponent
-  }
- /* {
-    // idem avec  http://localhost:4200/home
-    path:"home",
-    component:AssignmentsComponent
-  },
-  {
-    path:"add",
-    component:AddAssignmentComponent
-  },
-  {
-    path:"assignment/:id",
-    component:AssignmentDetailComponent
-  },
-  {
-    path:"assignment/:id/edit",
-    component:EditAssigmentComponent,
+    component : UtilisateurdetailComponent,
     canActivate : [AuthGuard]
-  }*/
+  }
+ 
 ]
 @NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatButtonModule, MatDividerModule, MatIconModule,
+    MatFormFieldModule, MatInputModule, MatDatepickerModule,
+    MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,
+    MatSlideToggleModule,
+    RouterModule.forRoot(routes), HttpClientModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     AppComponent,
     PariComponent,
@@ -105,18 +109,10 @@ const routes:Routes = [
     PariSaisieComponent,
     UtilisateurComponent,
     UtilisateurtableaubodyComponent,
-    UtilisateurdetailComponent
+    UtilisateurdetailComponent,
+    LoginComponent
     ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatButtonModule, MatDividerModule, MatIconModule,
-    MatFormFieldModule, MatInputModule, MatDatepickerModule,
-    MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,
-    MatSlideToggleModule,
-    RouterModule.forRoot(routes), HttpClientModule
-  ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

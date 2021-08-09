@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Config } from '../utilitaire/config.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,14 @@ export class AuthService {
   isAdmin() {
     return new Promise((resolve, reject) => {
       resolve(this.admin);
+    });
+  }
+
+  getUser() {
+    return new Promise((resolve, reject) => {
+      const user=JSON.parse(localStorage.getItem(Config.getLocalStorageKey("user")));
+    //  console.log("usera",user);
+      resolve(user);
     });
   }
 }
