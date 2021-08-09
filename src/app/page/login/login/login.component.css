@@ -2,6 +2,7 @@
     0% {display: none;opacity: 0; padding: 0;}
     100% {display: block;opacity: 1; padding : 10px}
 }
+
 .err-container { 
     display: none;
     opacity: 0;
