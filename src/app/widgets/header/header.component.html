@@ -25,10 +25,10 @@
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                   <ul class="nav navbar-nav">
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" (click)="toggleMenu()">Mon Profile <b class="caret"></b></a>
+                      <a class="dropdown-toggle" (click)="toggleMenu()">Mon profil <b class="caret"></b></a>
                       <ul [ngClass]="{'active' : menuOpen ,'dropdown-menu animated fadeInUp' : true}" class="">
-                        <li><a href="profile.html">Profil</a></li>
-                        <li><a href="login.html">Deconnexion</a></li>
+                        <li><a href="/Utilisateur">Profil</a></li>
+                        <li ><a (click)="deconnecter()">Deconnexion</a></li>
                       </ul>
                     </li>
                   </ul>

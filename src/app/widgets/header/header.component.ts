@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoggingService } from 'src/app/services/utilisateur/logging.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   menuOpen = false ; 
-  constructor() { }
+  constructor( private router:Router,private loggingService:LoggingService) { }
 
   ngOnInit(): void {
   }
   toggleMenu(): void { 
     this.menuOpen = !this.menuOpen;
+  }
+  deconnecter() : void {
+    console.log("atooo am deconnexion");
+    this.loggingService.logout();
+    this.router.navigate(["/Deconnexion"]);
   }
 }

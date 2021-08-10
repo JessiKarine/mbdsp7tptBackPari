@@ -32,6 +32,7 @@ import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.compone
 import { UtilisateurtableaubodyComponent } from './page/utilisateur/utilisateurtableaubody/utilisateurtableaubody.component';
 import { UtilisateurdetailComponent } from './page/utilisateur/utilisateurdetail/utilisateurdetail.component';
 import { AuthGuard } from './shared/auth.guard';
+import { DeconnexionComponent } from './page/deconnexion/deconnexion/deconnexion.component';
 
 const routes:Routes = [
   {
@@ -84,6 +85,10 @@ const routes:Routes = [
     path: "Utilisateur/:id",
     component : UtilisateurdetailComponent,
     canActivate : [AuthGuard]
+  },
+  {
+    path:"Deconnexion",
+    component: DeconnexionComponent
   }
  
 ]
@@ -110,7 +115,8 @@ const routes:Routes = [
     UtilisateurComponent,
     UtilisateurtableaubodyComponent,
     UtilisateurdetailComponent,
-    LoginComponent
+    LoginComponent,
+    DeconnexionComponent
     ],
   
   providers: [],
