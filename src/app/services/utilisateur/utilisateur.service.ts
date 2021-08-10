@@ -22,15 +22,17 @@ export class UtilisateurService {
     return this.http.get<Utilisateur>(this.uri + "/" + idUser);
   }
 
+// update un utilisateur by idUser
   updateUtilisateurByIdUser(idUser:String, utilisateurToUpdated:Utilisateur):Observable<Utilisateur>{
-    const headers = new HttpHeaders()
-    .append(
-      'Content-Type',
-      'application/json'
-    );
-    //const body = JSON.stringify();
     const body = { utilisateur : utilisateurToUpdated};
     const params = new HttpParams().append('test', 'estst');
     return this.http.put<Utilisateur>(this.uri + "/" + idUser, body);
   }
+
+ // delete utilisateur by idUser
+  deleteUtilisateurByIdUser(idUser:String):Observable<any>{
+    return this.http.delete<any>(this.uri + "/" + idUser);
+  }
+
+
 }

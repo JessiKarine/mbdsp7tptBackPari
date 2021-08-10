@@ -53,4 +53,12 @@ export class UtilisateurdetailComponent implements OnInit {
         })
   }
 
+  onDelete(){
+    this.utilisateurService.deleteUtilisateurByIdUser(this.idUser)
+        .subscribe(() => {
+            console.log("utilisateur deleted");
+            this.router.navigate(["/Utilisateur"]);
+        })
+  }
+
 }
