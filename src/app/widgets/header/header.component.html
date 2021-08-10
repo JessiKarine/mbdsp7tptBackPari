@@ -1,7 +1,7 @@
 <div class="header">
     <div class="container">
        <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
              <!-- Logo -->
              <div class="logo">
                 <h1><a href="index.html">Paris Sportif</a></h1>
@@ -20,15 +20,15 @@
              </div>
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="navbar navbar-inverse" role="banner">
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                   <ul class="nav navbar-nav">
                     <li class="dropdown">
-                      <a class="dropdown-toggle" (click)="toggleMenu()">Mon profil <b class="caret"></b></a>
+                      <a class="dropdown-toggle" (click)="toggleMenu()">Bonjour {{usersession.prenom}} <b class="caret"></b></a>
                       <ul [ngClass]="{'active' : menuOpen ,'dropdown-menu animated fadeInUp' : true}" class="">
-                        <li><a href="/Utilisateur">Profil</a></li>
-                        <li ><a (click)="deconnecter()">Deconnexion</a></li>
+                        <li><a href="/Utilisateur/{{usersession._id}}">Mon Profil</a></li>
+                        <li ><a (click)="deconnecter()">Se deconnecter</a></li>
                       </ul>
                     </li>
                   </ul>
