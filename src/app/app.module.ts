@@ -89,7 +89,11 @@ const routes:Routes = [
   {
     path:"Deconnexion",
     component: DeconnexionComponent
-  }
+  },{
+    path: "Pari/:id",
+    component : PariFicheComponent,
+    canActivate : [AuthGuard]
+  },
  
 ]
 @NgModule({

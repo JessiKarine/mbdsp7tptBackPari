@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Pari } from 'src/app/models/pari';
 import { PariService } from 'src/app/services/pari/pari.service';
 declare var $ : any ; 

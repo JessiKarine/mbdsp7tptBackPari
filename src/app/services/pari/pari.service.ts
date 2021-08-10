@@ -15,4 +15,8 @@ export class PariService {
   getParis():Observable<any> {
     return this.http.get(this.uri+"getParis");
   }
+  getPariById(idPari : String):Observable<any> {
+    return this.http.get(this.uri+"getPariById/"+idPari);
+  }
+
 }
