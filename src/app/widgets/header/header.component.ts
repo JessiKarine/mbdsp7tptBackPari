@@ -16,14 +16,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersession = JSON.parse(localStorage.getItem(Config.getLocalStorageKey("user")));
-    console.log("session user : ",this.usersession);
-    console.log("session id : ",this.usersession._id);
   }
   toggleMenu(): void { 
     this.menuOpen = !this.menuOpen;
   }
   deconnecter() : void {
-    console.log("atooo am deconnexion");
     this.loggingService.logout();
     this.router.navigate(["/Deconnexion"]);
   }

@@ -1,53 +1,49 @@
 <app-header></app-header>
 	<div class="page-content">
 		<div class="row">
-		<div class="col-md-2">
-			<app-menu></app-menu>
-		</div>
-		<div class="col-md-10">
-			<div class="content-box-large">
-				<div class="panel-heading">
-					<div class="panel-title">Liste des paris</div>
-					<div class="panel-options">
-						<a href="/PariSaisie" class="btn btn btn-primary">Creation</a>            
+			<div class="col-md-2">
+				<app-menu></app-menu>
+			</div>
+			<div class="col-md-10">
+				<div class="content-box-large">
+					<div class="panel-heading">
+						<div class="panel-title">Liste des paris</div>
+						<div class="panel-options">
+							<a href="/PariSaisie" class="btn btn btn-primary">Creation</a>            
+						</div>
 					</div>
-				</div>
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table">
-						<thead>
-						<tr>
-							<th>#</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Username</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<td><a href="/PariFiche">1</a></td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td><a href="/PariFiche">2</a></td>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-						</tr>
-						<tr>
-							<td><a href="/PariFiche">3</a></td>
-							<td>Larry</td>
-							<td>the Bird</td>
-							<td>@twitter</td>
-						</tr>
-						</tbody>
-					</table>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Nom de l'utilisateur</th>
+										<th>Mise</th>
+										<th>Equipe choisie</th>
+										<th>Categorie</th>
+										<th>Nom Equipe 1 - Coté Equipe 1</th>
+										<th>Coté match null</th>
+										<th>Nom Equipe 2 - Coté Equipe 2 </th>
+										<th>Date et heure du match</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor = "let paris of pariList ">
+										<td><a href="/Pari/{{paris._id}}">{{paris.idUser.prenom}}</a></td>
+										<td>{{paris.mise}}</td>
+										<td>{{paris.idEquipe?.nom}}</td>
+										<td>{{paris.idMatch.idcategorie.nom}}</td>
+										<td>{{paris.idMatch.idequipe1.nom+" - "+paris.idMatch.coteequipe1}}</td>
+										<td>{{paris.idMatch.coteMatchNull}}</td>
+										<td>{{paris.idMatch.idequipe2.nom+" - "+paris.idMatch.coteequipe2}}</td>
+										<td>{{(paris.idMatch.date | date) +" "+paris.idMatch.heure}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
   </div>
 <app-footer></app-footer>
