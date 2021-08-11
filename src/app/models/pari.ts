@@ -10,4 +10,9 @@ export class Pari{
     idUser : Utilisateur;
     prenom : String;
     mise : Number;
+    public constructor() {
+        this.idEquipe = new Equipe();
+        this.idUser = new Utilisateur();
+        this.idMatch = new Match();
+    }
 }
