@@ -14,6 +14,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
@@ -106,7 +107,8 @@ const routes:Routes = [
     MatNativeDateModule, MatListModule, MatCardModule, MatCheckboxModule,
     MatSlideToggleModule,
     RouterModule.forRoot(routes), HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   declarations: [
     AppComponent,

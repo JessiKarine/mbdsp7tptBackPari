@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router'
 import { UtilisateurService } from '../../../services/utilisateur/utilisateur.service';
 import { Utilisateur } from '../../../models/utilisateur';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-utilisateurdetail',
@@ -18,7 +19,10 @@ export class UtilisateurdetailComponent implements OnInit {
   email : String;
   numeroTelephone : String;
 
-  constructor(private route: ActivatedRoute, private router: Router, private utilisateurService: UtilisateurService) { }
+  constructor(private route: ActivatedRoute,
+                private router: Router,
+                    private utilisateurService: UtilisateurService,
+                    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.idUser = this.route.snapshot.paramMap.get('id');
@@ -27,6 +31,7 @@ export class UtilisateurdetailComponent implements OnInit {
   }
 
   getUtilisateurByIdUser(idUser:String){
+    this.spinner.show();
     this.utilisateurService.getUtilisateurByIdUser(idUser)
         .subscribe(utilisateur => {
             this.utilisateurSelected = utilisateur as Utilisateur;
@@ -35,10 +40,12 @@ export class UtilisateurdetailComponent implements OnInit {
             this.prenom = this.utilisateurSelected.prenom;
             this.email = this.utilisateurSelected.email;
             this.numeroTelephone = this.utilisateurSelected.numeroTelephone;
+            this.spinner.hide();
         })
   }
 
   onUpdate(){
+    this.spinner.show();
     console.log("login => " + this.login);
     this.utilisateurSelected.login = this.login;
     this.utilisateurSelected.nom = this.nom;
@@ -49,14 +56,18 @@ export class UtilisateurdetailComponent implements OnInit {
         .subscribe(utilisateur => {
             this.utilisateurSelected = utilisateur as Utilisateur
             console.log("utilisateur => " + this.utilisateurSelected);
+            this.spinner.hide();
             this.router.navigate(["/Utilisateur"]);
+
         })
   }
 
   onDelete(){
+    this.spinner.show();
     this.utilisateurService.deleteUtilisateurByIdUser(this.idUser)
         .subscribe(() => {
             console.log("utilisateur deleted");
+            this.spinner.hide();
             this.router.navigate(["/Utilisateur"]);
         })
   }
