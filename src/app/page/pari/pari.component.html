@@ -42,6 +42,22 @@
 								</tbody>
 							</table>
 						</div>
+						<div class="pagination">
+							<nav>
+							   <button mat-raised-button color="primary" (click)="premierePage()">
+								  Première
+							   </button>
+							   <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+								  Prev
+							   </button>
+							   <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+								  Suiv
+							   </button>
+							   <button mat-raised-button color="primary" (click)="dernierePage()">
+								  Dernière
+							   </button>
+							   </nav>
+						 </div>
 					</div>
 				</div>
 			</div>

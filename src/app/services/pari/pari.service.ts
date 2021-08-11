@@ -12,8 +12,8 @@ export class PariService {
   uri = Config.getBaseUrl()+"/api/pari/";
   constructor(private http:HttpClient,private router:Router) { }
 
-  getParis():Observable<any> {
-    return this.http.get(this.uri+"getParis");
+  getParis(page:number, limit:number):Observable<any> {
+    return this.http.get(this.uri+"getParis?page="+page + "&limit="+limit);
   }
   getPariById(idPari : String):Observable<any> {
     return this.http.get(this.uri+"getPariById/"+idPari);
