@@ -1,9 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { UtilisateurService } from '../../../services/utilisateur/utilisateur.service';
 import { Utilisateur } from '../../../models/utilisateur';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+  description: string;
+  titre: string ;
+  utilisateurData : Object;
+  typeOperation: Number;
+  idUser: string;
+}
 
 @Component({
   selector: 'app-utilisateurdetail',
@@ -13,16 +22,13 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class UtilisateurdetailComponent implements OnInit {
   idUser : String;
   utilisateurSelected : Utilisateur;
-  login : String;
-  nom : String;
-  prenom : String;
-  email : String;
-  numeroTelephone : String;
+  titre:String;
+  description:String;
 
   constructor(private route: ActivatedRoute,
-                private router: Router,
-                    private utilisateurService: UtilisateurService,
-                    private spinner: NgxSpinnerService) { }
+              public dialog: MatDialog,
+              private utilisateurService: UtilisateurService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.idUser = this.route.snapshot.paramMap.get('id');
@@ -31,45 +37,94 @@ export class UtilisateurdetailComponent implements OnInit {
   }
 
   getUtilisateurByIdUser(idUser:String){
-    this.spinner.show();
+   // this.spinner.show();
     this.utilisateurService.getUtilisateurByIdUser(idUser)
         .subscribe(utilisateur => {
             this.utilisateurSelected = utilisateur as Utilisateur;
-            this.login = this.utilisateurSelected.login;
-            this.nom = this.utilisateurSelected.nom;
-            this.prenom = this.utilisateurSelected.prenom;
-            this.email = this.utilisateurSelected.email;
-            this.numeroTelephone = this.utilisateurSelected.numeroTelephone;
-            this.spinner.hide();
+         //   this.spinner.hide();
         })
   }
 
-  onUpdate(){
-    this.spinner.show();
-    console.log("login => " + this.login);
-    this.utilisateurSelected.login = this.login;
-    this.utilisateurSelected.nom = this.nom;
-    this.utilisateurSelected.prenom = this.prenom;
-    this.utilisateurSelected.email = this.email;
-    this.utilisateurSelected.numeroTelephone = this.numeroTelephone;
-    this.utilisateurService.updateUtilisateurByIdUser(this.idUser, this.utilisateurSelected)
-        .subscribe(utilisateur => {
-            this.utilisateurSelected = utilisateur as Utilisateur
-            console.log("utilisateur => " + this.utilisateurSelected);
-            this.spinner.hide();
-            this.router.navigate(["/Utilisateur"]);
 
-        })
+    openDialog(type:Number): void {
+
+        switch(type){
+            case 0:
+                this.titre = "Modification";
+                this.description = "Êtes-vous sur de modifier "+ this.utilisateurSelected.nom +" " + this.utilisateurSelected.prenom + "?";
+                break;
+            case 1:
+                this.titre = "Suppression",
+                this.description = "Êtes-vous sur de supprimer "+ this.utilisateurSelected.nom +" " + this.utilisateurSelected.prenom + "?";
+                break;
+            default:
+                console.log("default opération");
+        }
+
+        const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+                             width: '250px',
+                             data: {titre: this.titre, description: this.description, idUser: this.idUser, utilisateurData: this.utilisateurSelected, typeOperation: type}
+                         });
+      }
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private utilisateurService: UtilisateurService,) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
-  onDelete(){
-    this.spinner.show();
-    this.utilisateurService.deleteUtilisateurByIdUser(this.idUser)
-        .subscribe(() => {
-            console.log("utilisateur deleted");
-            this.spinner.hide();
-            this.router.navigate(["/Utilisateur"]);
-        })
+  // parametre number 0 = update et 1 = deleted;
+  onAction(type:Number) : void {
+    //this.spinner.show();
+    switch(type){
+        case 0:
+            console.log('update');
+            this.onUpdate(this.data.idUser, this.data.utilisateurData as Utilisateur)
+            break;
+        case 1:
+            console.log('delete');
+            this.onDelete(this.data.idUser);
+            break;
+        default:
+            console.log('default modal');
+    }
+    //console.log("ok pour action => " + (this.data.utilisateurData as Utilisateur).prenom);
   }
+
+  onUpdate(idUser:String,  utilisateur: Utilisateur){
+      console.log("iduser: " + idUser + " utilisateur name: " + utilisateur.nom);
+      this.spinner.show();
+      this.utilisateurService.updateUtilisateurByIdUser(idUser, utilisateur)
+          .subscribe(utilisateur => {
+              //this.utilisateurSelected = utilisateur as Utilisateur
+             // console.log("utilisateur => " + this.utilisateurSelected);
+             this.spinner.hide();
+             this.dialogRef.close();
+             this.router.navigate(["/Utilisateur"]);
+
+          })
+    }
+
+    onDelete(idUser:String){
+      this.spinner.show();
+      this.utilisateurService.deleteUtilisateurByIdUser(idUser)
+          .subscribe(() => {
+              console.log("utilisateur deleted");
+              this.dialogRef.close();
+              this.spinner.hide();
+              this.router.navigate(["/Utilisateur"]);
+          })
+    }
 
 }
