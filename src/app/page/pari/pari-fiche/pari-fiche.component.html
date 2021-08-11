@@ -134,7 +134,7 @@
               </thead>
               <tbody>
                   <tr *ngFor="let match of matchList">
-                      <td><input type="radio" value="{{match | json}}" [(ngModel)]="idMatch" name="idmatch_{{match._id}}"><td>
+                      <td><input type="radio" value="{{match | json}}" [(ngModel)]="idMatch" name="idmatch_{{match._id}}"></td>
                       <td scope="row">{{match.idequipe1.nom}} - {{match.coteequipe1}}</td>
                       <td>{{match.coteMatchNull}}</td>
                       <td>{{match.idequipe2.nom}} - {{match.coteequipe2}}</td>
