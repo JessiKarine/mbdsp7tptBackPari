@@ -13,6 +13,7 @@ export class EquipeFicheComponent implements OnInit {
   image;
   nom;
   equipeSelected : Equipe;
+  file;
   constructor(private route: ActivatedRoute,private spinner: NgxSpinnerService,private equipeService : EquipeService) { }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class EquipeFicheComponent implements OnInit {
   }
   imagePreview(e) {
     const file = (e.target as HTMLInputElement).files[0];
+    this.file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
       this.image = reader.result as string;
@@ -38,7 +40,13 @@ export class EquipeFicheComponent implements OnInit {
   }
 
   onUpdate(){
-
+      console.log("fileee",this.file);
+      this.spinner.show();
+      this.equipeSelected.nom = this.nom;
+      this.equipeService.updateEquipeById(this.equipeSelected, this.file)
+      .subscribe(data => {
+        this.spinner.hide();
+    });
   }
   onDelete() {
     

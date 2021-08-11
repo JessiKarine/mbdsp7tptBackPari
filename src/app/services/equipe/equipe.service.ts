@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -20,8 +20,15 @@ export class EquipeService {
     return this.http.get(this.uri+"Equipes/"+id);
   }
 
-  updateEquipeById(equipeToUpdated:Equipe):Observable<Equipe>{
-    return this.http.put<Equipe>(this.uri + "Equipes/" + equipeToUpdated.id, equipeToUpdated);
+  updateEquipeById(equipeToUpdated: Equipe,file):Observable<Equipe>{
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('equipe' , JSON.stringify(equipeToUpdated));
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    
+    return this.http.post<Equipe>(this.uri + "Equipes/Update/",formData,{headers});
   }
   deleteEquipeById(id:String):Observable<any>{
     return this.http.delete<any>(this.uri + "Equipes/" + id);
