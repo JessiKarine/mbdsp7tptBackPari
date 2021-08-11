@@ -19,9 +19,8 @@ export class PariService {
     return this.http.get(this.uri+"getPariById/"+idPari);
   }
 
-  updatePariById(id:String, pariToUpdated:Pari):Observable<Pari>{
-    const body = { pari : pariToUpdated};
-    return this.http.put<Pari>(this.uri + "/" + id, body);
+  updatePariById(pariToUpdated:Pari):Observable<Pari>{
+    return this.http.put<Pari>(this.uri + "update/" + pariToUpdated._id, pariToUpdated);
   }
 
 }

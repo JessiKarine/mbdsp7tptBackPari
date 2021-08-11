@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" (submit)="updatePariById()">
                         <div class="col-md-12">
                             <div class="form-group form-group-custom" >
                                 <label for="user" class="col-sm-2 control-label">Utilisateur</label>
@@ -50,14 +50,14 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Mise</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="mise" [(ngModel)]="pari.mise" placeholder="mise" value="{{pari.mise}}">
+                                    <input type="number" name="mise" class="form-control" id="mise" [(ngModel)]="mise" placeholder="mise" value="{{pari.mise}}">
                                 </div>
                             </div>
                         </div>   
                         <div class="col-md-12 button-container-fiche">
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success" (click) = "updatePariById()">Modifier</button>
+                                    <button type="submit" class="btn btn-success">Modifier</button>
                                 </div>
                             </div>
                             <div class="form-group">

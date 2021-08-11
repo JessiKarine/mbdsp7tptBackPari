@@ -21,6 +21,7 @@ export class PariFicheComponent implements OnInit {
   idMatch : string;
   idEquipe; 
   idUser : string;
+  mise : Number;
   constructor(private utilisateurService:UtilisateurService,
     private route: ActivatedRoute, private router: Router,private pariService : PariService,private matchService : MatchService) { }
 
@@ -42,8 +43,7 @@ export class PariFicheComponent implements OnInit {
     .subscribe(data => {
         this.pari = data as Pari;
         this.idEquipe=this.pari.idEquipe.id;
-        
-        console.log("idequipe : ",this.idEquipe);
+        this.mise= this.pari.mise;
     });
   }
  
@@ -51,7 +51,6 @@ export class PariFicheComponent implements OnInit {
     this.utilisateurService.getAllUtilisateur()
         .subscribe(data => {
             this.utilisateurList = data as Utilisateur[];
-
         });
   }
 
@@ -64,15 +63,15 @@ export class PariFicheComponent implements OnInit {
   }
 
   updatePariById() {
-    console.log("ato am updatepari : ",this.idEquipe, "mise : ",this.pari.mise);
+    this.pari.mise = this.mise;
+    let idpari = this.pari._id;
     this.pari.idEquipe = JSON.parse(this.idEquipe);
-    
-   /* this.pariService.updatePariById(id,pariToUpdated)  
-    .subscribe(pari => {
-      this.pari = pari as Pari;
-      console.log("pari => " + this.pari);
-      this.router.navigate(["/Pari/"+id]);
-  })*/
+    this.getEquipeChoisi();
+    this.pariService.updatePariById(this.pari)  
+      .subscribe(pari => {
+        this.pari = pari as Pari;
+        this.router.navigate(["/Pari/"+idpari]);
+    })
   }
 
   savePopupMatch(){
@@ -83,5 +82,10 @@ export class PariFicheComponent implements OnInit {
   savePopupUser(){
     this.pari.idUser = JSON.parse(this.idUser);
     $('#modalUser').modal('hide');
+  }
+  getEquipeChoisi(){
+    if(this.idEquipe===this.pari.idMatch.idequipe1.id)this.pari.idEquipe =this.pari.idMatch.idequipe1;
+    else this.pari.idEquipe =this.pari.idMatch.idequipe2;
+    console.log("idequipe choisi ",this.pari.idEquipe );
   }
 }
