@@ -94,12 +94,13 @@ const routes:Routes = [
   {
     path:"Deconnexion",
     component: DeconnexionComponent
-  },{
+  },
+  {
     path: "Pari/:id",
     component : PariFicheComponent,
     canActivate : [AuthGuard]
   },
-  ,{
+  {
     path: "Equipe/:id",
     component : EquipeFicheComponent,
     canActivate : [AuthGuard]
@@ -108,7 +109,7 @@ const routes:Routes = [
     path:"EquipeSaisie",
     component: EquipeSaisieComponent,
     canActivate : [AuthGuard]
-  },
+  }
  
 ]
 @NgModule({
