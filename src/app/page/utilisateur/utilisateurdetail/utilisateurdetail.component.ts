@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { UtilisateurService } from '../../../services/utilisateur/utilisateur.service';
 import { Utilisateur } from '../../../models/utilisateur';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+  description: string;
+  titre: string ;
+  utilisateurData : Utilisateur;
+}
 
 @Component({
   selector: 'app-utilisateurdetail',
@@ -19,10 +26,15 @@ export class UtilisateurdetailComponent implements OnInit {
   email : String;
   numeroTelephone : String;
 
+  animal: string;
+  name: string;
+  titre: String = "test titre";
+
   constructor(private route: ActivatedRoute,
                 private router: Router,
                     private utilisateurService: UtilisateurService,
-                    private spinner: NgxSpinnerService) { }
+                    private spinner: NgxSpinnerService,
+                      public dialog: MatDialog  ) { }
 
   ngOnInit(): void {
     this.idUser = this.route.snapshot.paramMap.get('id');
@@ -70,6 +82,34 @@ export class UtilisateurdetailComponent implements OnInit {
             this.spinner.hide();
             this.router.navigate(["/Utilisateur"]);
         })
+  }
+    openDialog(): void {
+        const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+          width: '250px',
+          data: {titre: "Delete", description: "Êtes-vous sur de modifier?", utilisateurData: this.utilisateurSelected}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          this.animal = result;
+        });
+      }
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  onAction() : void {
+          console.log("ok pour action => " + this.data.utilisateurData.prenom);
   }
 
 }
