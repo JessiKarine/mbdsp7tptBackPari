@@ -122,7 +122,8 @@ const routes:Routes = [
     UtilisateurtableaubodyComponent,
     UtilisateurdetailComponent,
     LoginComponent,
-    DeconnexionComponent
+    DeconnexionComponent,
+    EquipeComponent
     ],
   
   providers: [],

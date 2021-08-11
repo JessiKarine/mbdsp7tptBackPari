@@ -1,1 +1,46 @@
-<p>equipe works!</p>
+<app-header></app-header>
+<ngx-spinner></ngx-spinner>
+<div class="page-content">
+    <div class="row">
+        <div class="col-md-2">
+            <app-menu></app-menu>
+        </div>
+        <div class="col-md-10">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title">Liste des equipes</div>
+                    <div class="panel-options">
+                        <a href="/EquipeSaisie" class="btn btn btn-primary">Creation</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nom</th>
+                                <th>Image</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                
+                
+                            <tr *ngFor="let equipe of equipeList">
+                                <td><a href="/Equipe/{{ equipe.id }}">{{ equipe.id }}</a></td>
+                                <td>{{ equipe.nom }}</td>
+                                <td>{{ equipe.image }}</td>
+                            </tr>
+                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-footer></app-footer>
