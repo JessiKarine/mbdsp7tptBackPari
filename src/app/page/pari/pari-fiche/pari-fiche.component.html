@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" (submit)="updatePariById()">
+                    <form class="form-horizontal" >
                         <div class="col-md-12">
                             <div class="form-group form-group-custom" >
                                 <label for="user" class="col-sm-2 control-label">Utilisateur</label>
@@ -24,7 +24,7 @@
                                             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
                                         </svg>
                                     </span>
-                                    <input type="text" class="form-control" id="user" placeholder="Email" disabled value="{{pari.idUser.nom}}">
+                                    <input type="text" class="form-control" id="user" placeholder="Email" disabled value="{{pari?.idUser?.nom}}">
                                 </div>
                             </div>
                             <div class="form-group form-group-custom">
@@ -35,34 +35,34 @@
                                             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
                                         </svg>
                                     </span>
-                                    <input type="text" class="form-control" id="match" placeholder="match"  disabled value="{{pari.idMatch.idcategorie.nom}} ({{pari.idMatch.idequipe1.nom}} vs {{pari.idMatch.idequipe2.nom}})">
+                                    <input type="text" class="form-control" id="match" placeholder="match"  disabled value="{{pari?.idMatch?.idcategorie?.nom}} ({{pari?.idMatch?.idequipe1?.nom}} vs {{pari?.idMatch?.idequipe2?.nom}})">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Equipe choisie</label>
                                 <div class="col-sm-10">
                                     <select name="idequipe" id="idequipe" [(ngModel)]="idEquipe" class="form-control" >
-                                        <option value="{{pari.idMatch.idequipe1.id }}" >{{pari.idMatch.idequipe1.nom}}</option>
-                                        <option value="{{pari.idMatch.idequipe2.id}}" >{{pari.idMatch.idequipe2.nom}}</option>
+                                        <option value="{{pari?.idMatch?.idequipe1?.id }}" >{{pari?.idMatch?.idequipe1?.nom}}</option>
+                                        <option value="{{pari?.idMatch?.idequipe2?.id}}" >{{pari?.idMatch?.idequipe2?.nom}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Mise</label>
                                 <div class="col-sm-10">
-                                    <input type="number" name="mise" class="form-control" id="mise" [(ngModel)]="mise" placeholder="mise" value="{{pari.mise}}">
+                                    <input type="number" name="mise" class="form-control" id="mise" [(ngModel)]="mise" placeholder="mise" value="{{pari?.mise}}">
                                 </div>
                             </div>
                         </div>   
                         <div class="col-md-12 button-container-fiche">
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">Modifier</button>
+                                    <button type="submit" class="btn btn-success" (click)="updatePariById()">Modifier</button>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    <button type="submit" class="btn btn-danger" (click)="deletePariById()">Supprimer</button>
                                 </div>
                             </div>
                         </div>

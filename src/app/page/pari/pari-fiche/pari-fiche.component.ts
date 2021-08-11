@@ -64,13 +64,11 @@ export class PariFicheComponent implements OnInit {
 
   updatePariById() {
     this.pari.mise = this.mise;
-    let idpari = this.pari._id;
     this.pari.idEquipe = JSON.parse(this.idEquipe);
     this.getEquipeChoisi();
     this.pariService.updatePariById(this.pari)  
       .subscribe(pari => {
-        this.pari = pari as Pari;
-        this.router.navigate(["/Pari/"+idpari]);
+        this.router.navigate(["/Pari/"+this.pari._id]);
     })
   }
 
@@ -86,6 +84,14 @@ export class PariFicheComponent implements OnInit {
   getEquipeChoisi(){
     if(this.idEquipe===this.pari.idMatch.idequipe1.id)this.pari.idEquipe =this.pari.idMatch.idequipe1;
     else this.pari.idEquipe =this.pari.idMatch.idequipe2;
-    console.log("idequipe choisi ",this.pari.idEquipe );
+  }
+
+  deletePariById(){
+    console.log("atoo ve delete pari")
+    this.pariService.deletePariById(this.pari._id)
+        .subscribe(() => {
+            console.log("equipe deleted");
+            this.router.navigate(["/Pari"]);
+        })
   }
 }

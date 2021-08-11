@@ -22,5 +22,9 @@ export class PariService {
   updatePariById(pariToUpdated:Pari):Observable<Pari>{
     return this.http.put<Pari>(this.uri + "update/" + pariToUpdated._id, pariToUpdated);
   }
+  deletePariById(id:String):Observable<any>{
+    console.log("urlll : ",this.uri + "/"+ id);
+    return this.http.delete<any>(this.uri + "/" + id);
+  }
 
 }
