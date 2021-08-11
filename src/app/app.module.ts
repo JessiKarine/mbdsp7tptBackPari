@@ -34,6 +34,10 @@ import { UtilisateurtableaubodyComponent } from './page/utilisateur/utilisateurt
 import { UtilisateurdetailComponent } from './page/utilisateur/utilisateurdetail/utilisateurdetail.component';
 import { AuthGuard } from './shared/auth.guard';
 import { DeconnexionComponent } from './page/deconnexion/deconnexion/deconnexion.component';
+import { EquipeFicheComponent } from './page/equipe/equipe-fiche/equipe-fiche/equipe-fiche.component';
+import { Equipe } from './models/equipe';
+import { EquipeSaisieComponent } from './page/equipe/equipe-saisie/equipe-saisie/equipe-saisie.component';
+
 
 const routes:Routes = [
   {
@@ -95,6 +99,16 @@ const routes:Routes = [
     component : PariFicheComponent,
     canActivate : [AuthGuard]
   },
+  ,{
+    path: "Equipe/:id",
+    component : EquipeFicheComponent,
+    canActivate : [AuthGuard]
+  },
+  {
+    path:"EquipeSaisie",
+    component: EquipeSaisieComponent,
+    canActivate : [AuthGuard]
+  },
  
 ]
 @NgModule({
@@ -123,7 +137,9 @@ const routes:Routes = [
     UtilisateurdetailComponent,
     LoginComponent,
     DeconnexionComponent,
-    EquipeComponent
+    EquipeComponent,
+    EquipeFicheComponent,
+    EquipeSaisieComponent
     ],
   
   providers: [],
