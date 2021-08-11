@@ -48,17 +48,20 @@ export class PariSaisieComponent implements OnInit {
   }
 
   getAllUtilisateur(){
+    this.spinner.show();
     this.utilisateurService.getAllUtilisateur()
         .subscribe(data => {
+          this.spinner.hide();
             this.utilisateurList = data as Utilisateur[];
         });
   }
 
   getAllMatch(){
+    this.spinner.show();
     this.matchService.getMatch()
         .subscribe(data => {
-            console.log("dans match component, liste des matchs = " + data);
             this.matchList = data as Match[];
+            this.spinner.hide();
         });
   }
   createPariById(){
@@ -68,7 +71,8 @@ export class PariSaisieComponent implements OnInit {
     this.getEquipeChoisi();
     this.pariService.createPari(this.pari)  
       .subscribe(pari => {
-        this.pari._id = pari._id;
+        console.log(pari.message);
+        this.pari._id = pari.message;
         this.router.navigate(["/Pari/"+this.pari._id  ]);
         this.spinner.hide();
     })
