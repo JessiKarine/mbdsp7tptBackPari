@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Equipe } from 'src/app/models/equipe';
 import { Match } from 'src/app/models/match';
 import { Pari } from 'src/app/models/pari';
 import { Utilisateur } from 'src/app/models/utilisateur';
@@ -13,18 +15,21 @@ declare var $:any ;
   styleUrls: ['./pari-fiche.component.css']
 })
 export class PariFicheComponent implements OnInit {
-  pari;
+  pari : Pari;
   utilisateurList;
   matchList;
-
+  idMatch : string;
+  idEquipe; 
+  idUser : string;
   constructor(private utilisateurService:UtilisateurService,
-    private route: ActivatedRoute,private pariService : PariService,private matchService : MatchService) { }
+    private route: ActivatedRoute, private router: Router,private pariService : PariService,private matchService : MatchService) { }
 
   ngOnInit(): void {
     this.getPariById(this.route.snapshot.paramMap.get('id'));
   }
   toggleModalUser(): void { 
     this.getAllUtilisateur();
+    console.log(this.idUser);
     $('#modalUser').modal('show');
   }
   toggleModalMatch(): void { 
@@ -36,9 +41,12 @@ export class PariFicheComponent implements OnInit {
     this.pariService.getPariById(idPari)
     .subscribe(data => {
         this.pari = data as Pari;
+        this.idEquipe=this.pari.idEquipe.id;
+        
+        console.log("idequipe : ",this.idEquipe);
     });
   }
-
+ 
   getAllUtilisateur(){
     this.utilisateurService.getAllUtilisateur()
         .subscribe(data => {
@@ -53,5 +61,27 @@ export class PariFicheComponent implements OnInit {
             console.log("dans match component, liste des matchs = " + data);
             this.matchList = data as Match[];
         });
+  }
+
+  updatePariById() {
+    console.log("ato am updatepari : ",this.idEquipe, "mise : ",this.pari.mise);
+    this.pari.idEquipe = JSON.parse(this.idEquipe);
+    
+   /* this.pariService.updatePariById(id,pariToUpdated)  
+    .subscribe(pari => {
+      this.pari = pari as Pari;
+      console.log("pari => " + this.pari);
+      this.router.navigate(["/Pari/"+id]);
+  })*/
+  }
+
+  savePopupMatch(){
+    this.pari.idMatch = JSON.parse(this.idMatch);
+   $('#modalMatch').modal('hide');
+
+  }
+  savePopupUser(){
+    this.pari.idUser = JSON.parse(this.idUser);
+    $('#modalUser').modal('hide');
   }
 }

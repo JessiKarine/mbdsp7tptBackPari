@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,6 +17,11 @@ export class PariService {
   }
   getPariById(idPari : String):Observable<any> {
     return this.http.get(this.uri+"getPariById/"+idPari);
+  }
+
+  updatePariById(id:String, pariToUpdated:Pari):Observable<Pari>{
+    const body = { pari : pariToUpdated};
+    return this.http.put<Pari>(this.uri + "/" + id, body);
   }
 
 }
