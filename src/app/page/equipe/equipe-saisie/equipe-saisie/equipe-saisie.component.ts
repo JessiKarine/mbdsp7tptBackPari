@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./equipe-saisie.component.css']
 })
 export class EquipeSaisieComponent implements OnInit {
-
+  image;
+  nom;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onCreate(){
+
   }
 
 }
