@@ -29,7 +29,7 @@
                             <tr *ngFor="let equipe of equipeList">
                                 <td><a href="/Equipe/{{ equipe.id }}">{{ equipe.id }}</a></td>
                                 <td>{{ equipe.nom }}</td>
-                                <td>{{ equipe.image }}</td>
+                                <td><div class="img-equipe"><img src="/assets/images/{{ equipe.image }}" alt="{{ equipe.nom }}" ></div></td>
                             </tr>
                 
                             </tbody>
