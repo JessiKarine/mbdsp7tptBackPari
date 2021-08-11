@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Match } from 'src/app/models/match';
 import { Pari } from 'src/app/models/pari';
 import { Utilisateur } from 'src/app/models/utilisateur';
@@ -21,7 +22,8 @@ export class PariSaisieComponent implements OnInit {
   mise;
   pari : Pari;
   constructor(private utilisateurService:UtilisateurService,
-    private route: ActivatedRoute, private router: Router,private pariService : PariService,private matchService : MatchService) { }
+    private route: ActivatedRoute, private router: Router,
+    private pariService : PariService,private matchService : MatchService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.pari = new Pari();
@@ -60,6 +62,19 @@ export class PariSaisieComponent implements OnInit {
         });
   }
   createPariById(){
-
+    this.spinner.show();
+    this.pari.mise = this.mise;
+    this.pari.idEquipe = JSON.parse(this.idEquipe);
+    this.getEquipeChoisi();
+    this.pariService.createPari(this.pari)  
+      .subscribe(pari => {
+        this.pari._id = pari._id;
+        this.router.navigate(["/Pari/"+this.pari._id  ]);
+        this.spinner.hide();
+    })
+  }
+  getEquipeChoisi(){
+    if(this.idEquipe===this.pari.idMatch.idequipe1.id)this.pari.idEquipe =this.pari.idMatch.idequipe1;
+    else this.pari.idEquipe =this.pari.idMatch.idequipe2;
   }
 }

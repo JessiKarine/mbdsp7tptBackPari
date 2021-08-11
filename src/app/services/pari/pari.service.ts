@@ -26,5 +26,9 @@ export class PariService {
     console.log("urlll : ",this.uri + "/"+ id);
     return this.http.delete<any>(this.uri + "/" + id);
   }
+  createPari(pariToInsert:Pari):Observable<Pari>{
+    console.log("ao am creer pari : ",pariToInsert );
+    return this.http.post<Pari>(this.uri + "insert" , pariToInsert);
+  }
 
 }
