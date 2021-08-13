@@ -1,0 +1,35 @@
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Catégorie</th>
+                <th>Equipe 1</th>
+                <th>Equipe 2</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Cote Equipe 1</th>
+                <th>Cote Equipe 2</th>
+                <th>Cote Match nul</th>
+                <th>Etat</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr *ngFor="let match of matchList">
+                <td><a href="/Match/{{ match._id }}">{{ match.idcategorie }}</a></td>
+                <td>{{ match.idequipe1 }}</td>
+                <td>{{ match.idequipe2 }}</td>
+                <td>{{ match.date }}</td>
+                <td>{{ match.heure }}</td>
+                <td>{{ match.coteequipe1 }}</td>
+                <td>{{ match.coteequipe2 }}</td>
+                <td>{{ match.coteMatchNull }}</td>
+                <td>{{ match.etat }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

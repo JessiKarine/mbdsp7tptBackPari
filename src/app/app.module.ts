@@ -28,10 +28,13 @@ import { EquipeComponent } from './page/equipe/equipe/equipe.component';
 import { CategorieComponent } from './page/categorie/categorie/categorie.component';
 import { DashboardComponent } from './page/dashboard/dashboard/dashboard.component';
 import { UtilisateurComponent } from './page/utilisateur/utilisateur/utilisateur.component';
+import { MatchComponent } from './page/match/match/match.component';
 import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component';
 import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
 import { UtilisateurtableaubodyComponent } from './page/utilisateur/utilisateurtableaubody/utilisateurtableaubody.component';
+import { MatchtableaubodyComponent } from './page/match/matchtableaubody/matchtableaubody.component';
 import { UtilisateurdetailComponent } from './page/utilisateur/utilisateurdetail/utilisateurdetail.component';
+import { MatchdetailComponent } from './page/match/matchdetail/matchdetail.component';
 import { AuthGuard } from './shared/auth.guard';
 import { DeconnexionComponent } from './page/deconnexion/deconnexion/deconnexion.component';
 import { EquipeFicheComponent } from './page/equipe/equipe-fiche/equipe-fiche/equipe-fiche.component';
@@ -92,6 +95,16 @@ const routes:Routes = [
     canActivate : [AuthGuard]
   },
   {
+    path:"Match",
+    component: MatchComponent,
+    canActivate : [AuthGuard]
+  },
+  {
+    path:"Match/:id",
+    component: MatchdetailComponent,
+    canActivate : [AuthGuard]
+  },
+  {
     path:"Deconnexion",
     component: DeconnexionComponent
   },
@@ -134,7 +147,9 @@ const routes:Routes = [
     PariFicheComponent,
     PariSaisieComponent,
     UtilisateurComponent,
+    MatchComponent
     UtilisateurtableaubodyComponent,
+    MatchtableaubodyComponent,
     UtilisateurdetailComponent,
     LoginComponent,
     DeconnexionComponent,
