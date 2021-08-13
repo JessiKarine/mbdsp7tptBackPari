@@ -18,9 +18,9 @@
 
 
             <tr *ngFor="let match of matchList">
-                <td><a href="/Match/{{ match._id }}">{{ match.idcategorie }}</a></td>
-                <td>{{ match.idequipe1 }}</td>
-                <td>{{ match.idequipe2 }}</td>
+                <td><a href="/Match/{{ match._id }}">{{ match.idcategorie.nom }}</a></td>
+                <td>{{ match.idequipe1.nom }}</td>
+                <td>{{ match.idequipe2.nom }}</td>
                 <td>{{ match.date }}</td>
                 <td>{{ match.heure }}</td>
                 <td>{{ match.coteequipe1 }}</td>

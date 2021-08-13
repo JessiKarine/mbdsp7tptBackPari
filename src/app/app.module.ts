@@ -147,10 +147,11 @@ const routes:Routes = [
     PariFicheComponent,
     PariSaisieComponent,
     UtilisateurComponent,
-    MatchComponent
+    MatchComponent,
     UtilisateurtableaubodyComponent,
     MatchtableaubodyComponent,
     UtilisateurdetailComponent,
+    MatchdetailComponent,
     LoginComponent,
     DeconnexionComponent,
     EquipeComponent,
