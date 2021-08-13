@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Equipe } from 'src/app/models/equipe';
 import { EquipeService } from 'src/app/services/equipe/equipe.service';
@@ -14,7 +14,7 @@ export class EquipeFicheComponent implements OnInit {
   nom;
   equipeSelected : Equipe;
   file;
-  constructor(private route: ActivatedRoute,private spinner: NgxSpinnerService,private equipeService : EquipeService) { }
+  constructor(private router: Router,private route: ActivatedRoute,private spinner: NgxSpinnerService,private equipeService : EquipeService) { }
 
   ngOnInit(): void {
     this.getEquipeById(this.route.snapshot.paramMap.get('id'));
@@ -26,6 +26,7 @@ export class EquipeFicheComponent implements OnInit {
         .subscribe(equipe => {
             this.equipeSelected = equipe as Equipe;
             this.image = "/assets/images/"+this.equipeSelected.image;
+            this.nom = this.equipeSelected.nom;
             this.spinner.hide();
         })
   }
@@ -40,7 +41,6 @@ export class EquipeFicheComponent implements OnInit {
   }
 
   onUpdate(){
-      console.log("fileee",this.file);
       this.spinner.show();
       this.equipeSelected.nom = this.nom;
       this.equipeService.updateEquipeById(this.equipeSelected, this.file)
@@ -49,7 +49,13 @@ export class EquipeFicheComponent implements OnInit {
     });
   }
   onDelete() {
-    
+    this.spinner.show();
+      this.equipeService.deleteEquipeById(this.equipeSelected.id)
+          .subscribe(() => {
+              console.log("utilisateur deleted");
+              this.spinner.hide();
+              this.router.navigate(["/Equipe"]);
+          })
   }
 
 }
