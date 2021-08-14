@@ -30,7 +30,7 @@ export class CategorieService {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     if(file === undefined || file === null){
-      return this.http.put<Categorie>(this.uri + "Categorie",equipeToUpdated);
+      return this.http.put<Categorie>(this.uri + "Categories",equipeToUpdated);
     }else{
       return this.http.post<Categorie>(this.uri + "Categorie/Update/",formData,{headers});
     }

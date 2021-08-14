@@ -35,4 +35,9 @@ export class MatchService {
   deleteMatchById(id:String):Observable<any>{
     return this.http.delete<any>(this.uri + "/" + id);
   }
+  createMatch(matchToCreate:Match):Observable<Match>{
+    console.log("uri==="+this.uri);
+    console.log("heure dans angular==="+matchToCreate.heure);
+    return this.http.post<Match>(this.uri, matchToCreate);
+  }
 }
