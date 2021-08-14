@@ -48,7 +48,7 @@ export class CategorieService {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     if(file === undefined || file === null){
-      return this.http.post<Categorie>(this.uri + "Categorie",equipeToSelected);
+      return this.http.post<Categorie>(this.uri + "Categories",equipeToSelected);
     }else{
       return this.http.post<Categorie>(this.uri + "Categorie/Insert/",formData,{headers});
     }

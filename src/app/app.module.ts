@@ -38,6 +38,7 @@ import { UtilisateurdetailComponent } from './page/utilisateur/utilisateurdetail
 import { CategoriedetailComponent } from './page/categorie/categoriedetail/categoriedetail.component';
 import { MatchdetailComponent } from './page/match/matchdetail/matchdetail.component';
 import { MatchsaisieComponent } from './page/match/matchsaisie/matchsaisie.component';
+import { CategoriesaisieComponent } from './page/categorie/categoriesaisie/categoriesaisie.component';
 import { AuthGuard } from './shared/auth.guard';
 import { DeconnexionComponent } from './page/deconnexion/deconnexion/deconnexion.component';
 import { EquipeFicheComponent } from './page/equipe/equipe-fiche/equipe-fiche/equipe-fiche.component';
@@ -118,6 +119,11 @@ const routes:Routes = [
     canActivate : [AuthGuard]
   },
   {
+    path:"CategorieSaisie",
+    component: CategoriesaisieComponent,
+    canActivate : [AuthGuard]
+  },
+  {
     path:"Deconnexion",
     component: DeconnexionComponent
   },
@@ -169,6 +175,7 @@ const routes:Routes = [
     CategoriedetailComponent,
     MatchdetailComponent,
     MatchsaisieComponent,
+    CategoriesaisieComponent,
     LoginComponent,
     DeconnexionComponent,
     EquipeComponent,
