@@ -24,10 +24,12 @@ export class MatchService {
 
 // update un match by id
   updateMatchById(id:String, matchToUpdated:Match):Observable<Match>{
-    const body = { match : matchToUpdated};
+    /*const body = { match : matchToUpdated};
     //const params = new HttpParams().append('test', 'estst');
-    return this.http.put<Match>(this.uri + "/" + id, body);
+    return this.http.put<Match>(this.uri + "/" + id, body);*/
+    return this.http.put<Match>(this.uri + id, matchToUpdated);
   }
+
 
  // delete match by id
   deleteMatchById(id:String):Observable<any>{

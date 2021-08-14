@@ -25,54 +25,52 @@ export class MatchdetailComponent implements OnInit {
   matchSelected : Match;
   titre:String;
   description:String;
+  
 
   constructor(private route: ActivatedRoute,
               public dialog: MatDialog,
               private matchService: MatchService,
-              private spinner: NgxSpinnerService) { }
+              private spinner: NgxSpinnerService
+              , private router: Router) { }
  
   ngOnInit(): void {
     this.idMatch = this.route.snapshot.paramMap.get('id');
-    console.log("iddd="+this.idMatch);
     this.getMatchById(this.idMatch);
   }
 
   getMatchById(idMatch:String){
-    //this.spinner.show();
     this.matchService.getMatchById(idMatch)
         .subscribe(match => {
             this.matchSelected = match as Match;
-            //this.spinner.hide();
         })
   }
 
+  openDialog(type:Number): void {
+    console.log('Entree dans dialog avec type==='+type);
+    switch(type){
+        case 0:
+            this.titre = "Modification";
+            this.description = "Êtes-vous sur de modifier ?";
+            break;
+        case 1:
+            this.titre = "Suppression",
+            this.description = "Êtes-vous sur de supprimer ?";
+            break;
+        default:
+            console.log("default opération");
+    }
 
-    openDialog(type:Number): void {
-
-        switch(type){
-            case 0:
-                this.titre = "Modification";
-                this.description = "Êtes-vous sur de modifier ?";
-                break;
-            case 1:
-                this.titre = "Suppression",
-                this.description = "Êtes-vous sur de supprimer ?";
-                break;
-            default:
-                console.log("default opération");
-        }
-
-        const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-                             width: '250px',
-                             data: {matchData: this.matchSelected, typeOperation: type}
-                         });
-      }
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+                         width: '250px',
+                         data: {titre: this.titre, description: this.description,typeOperation: type,idUser:this.idMatch, matchData: this.matchSelected}
+                     });
+  }
 }
 
-/*@Component({
+@Component({
   selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html', app-matchtableaubody
-})*/
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
 export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
@@ -90,7 +88,7 @@ export class DialogOverviewExampleDialog {
     //this.spinner.show();
     switch(type){
         case 0:
-            console.log('update');
+            console.log('update-idMatch='+this.data.idUser);
             this.onUpdate(this.data.idUser, this.data.matchData as Match)
             break;
         case 1:
@@ -105,6 +103,7 @@ export class DialogOverviewExampleDialog {
 
   onUpdate(idMatch:String,  match: Match){
       this.spinner.show();
+      console.log('heure==='+match.heure);
       this.matchService.updateMatchById(idMatch, match)
           .subscribe(match => {
              this.spinner.hide();
