@@ -29,11 +29,13 @@ import { CategorieComponent } from './page/categorie/categorie/categorie.compone
 import { DashboardComponent } from './page/dashboard/dashboard/dashboard.component';
 import { UtilisateurComponent } from './page/utilisateur/utilisateur/utilisateur.component';
 import { MatchComponent } from './page/match/match/match.component';
+import { RoleComponent } from './page/role/role/role.component';
 import { PariFicheComponent } from './page/pari/pari-fiche/pari-fiche.component';
 import { PariSaisieComponent } from './page/pari/pari-saisie/pari-saisie.component';
 import { UtilisateurtableaubodyComponent } from './page/utilisateur/utilisateurtableaubody/utilisateurtableaubody.component';
 import { CategorietableaubodyComponent } from './page/categorie/categorietableaubody/categorietableaubody.component';
 import { MatchtableaubodyComponent } from './page/match/matchtableaubody/matchtableaubody.component';
+import { RoletableaubodyComponent } from './page/role/roletableaubody/roletableaubody.component';
 import { UtilisateurdetailComponent } from './page/utilisateur/utilisateurdetail/utilisateurdetail.component';
 import { CategoriedetailComponent } from './page/categorie/categoriedetail/categoriedetail.component';
 import { MatchdetailComponent } from './page/match/matchdetail/matchdetail.component';
@@ -109,6 +111,11 @@ const routes:Routes = [
     canActivate : [AuthGuard]
   },
   {
+    path:"Role",
+    component: RoleComponent,
+    canActivate : [AuthGuard]
+  },
+  {
     path:"Match/:id",
     component: MatchdetailComponent,
     canActivate : [AuthGuard]
@@ -168,9 +175,11 @@ const routes:Routes = [
     UtilisateurComponent,
     CategorieComponent,
     MatchComponent,
+    RoleComponent,
     UtilisateurtableaubodyComponent,
     CategorietableaubodyComponent,
     MatchtableaubodyComponent,
+    RoletableaubodyComponent,
     UtilisateurdetailComponent,
     CategoriedetailComponent,
     MatchdetailComponent,
