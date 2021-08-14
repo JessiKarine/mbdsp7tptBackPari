@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+
 export interface DialogData {
   description: string;
   titre: string ;
@@ -20,7 +21,7 @@ export interface DialogData {
   styleUrls: ['./matchdetail.component.css']
 })
 export class MatchdetailComponent implements OnInit {
-  idUser : String;
+  idMatch : String;
   matchSelected : Match;
   titre:String;
   description:String;
@@ -29,18 +30,19 @@ export class MatchdetailComponent implements OnInit {
               public dialog: MatDialog,
               private matchService: MatchService,
               private spinner: NgxSpinnerService) { }
-
+ 
   ngOnInit(): void {
-    this.idUser = this.route.snapshot.paramMap.get('id');
-    this.getMatchById(this.idUser);
+    this.idMatch = this.route.snapshot.paramMap.get('id');
+    console.log("iddd="+this.idMatch);
+    this.getMatchById(this.idMatch);
   }
 
-  getMatchById(idUser:String){
-   // this.spinner.show();
-    this.matchService.getMatchById(idUser)
+  getMatchById(idMatch:String){
+    //this.spinner.show();
+    this.matchService.getMatchById(idMatch)
         .subscribe(match => {
             this.matchSelected = match as Match;
-         //   this.spinner.hide();
+            //this.spinner.hide();
         })
   }
 
@@ -101,9 +103,9 @@ export class DialogOverviewExampleDialog {
     //console.log("ok pour action => " + (this.data.utilisateurData as Utilisateur).prenom);
   }
 
-  onUpdate(idUser:String,  match: Match){
+  onUpdate(idMatch:String,  match: Match){
       this.spinner.show();
-      this.matchService.updateMatchById(idUser, match)
+      this.matchService.updateMatchById(idMatch, match)
           .subscribe(match => {
              this.spinner.hide();
              this.dialogRef.close();
@@ -112,9 +114,9 @@ export class DialogOverviewExampleDialog {
           })
     }
 
-    onDelete(idUser:String){
+    onDelete(idMatch:String){
       this.spinner.show();
-      this.matchService.deleteMatchById(idUser)
+      this.matchService.deleteMatchById(idMatch)
           .subscribe(() => {
               console.log("match deleted");
               this.dialogRef.close();
