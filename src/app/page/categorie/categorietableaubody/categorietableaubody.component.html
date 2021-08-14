@@ -1,0 +1,23 @@
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr *ngFor="let categorie of categorieList">
+                <td><a href="/Categorie/{{ categorie.id }}">{{ categorie.nom }}</a></td>
+                <td>{{ categorie.description }}</td>
+                <td>{{ categorie.image }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

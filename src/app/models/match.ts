@@ -13,4 +13,9 @@ export class Match{
     coteequipe2 : Number;
     etat : string;
     coteMatchNull : Number;
+    public constructor() {
+        this.idcategorie = new Categorie();
+        this.idequipe1 = new Equipe();
+        this.idequipe2 = new Equipe();
+    }
 }

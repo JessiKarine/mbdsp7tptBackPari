@@ -1,0 +1,21 @@
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Rang</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr *ngFor="let role of roleList">
+                <td><a href="/Role/{{ role.id }}">{{ role.nom }}</a></td>
+                <td>{{ role.rang }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

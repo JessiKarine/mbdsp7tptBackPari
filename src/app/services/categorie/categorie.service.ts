@@ -2,26 +2,26 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Equipe } from 'src/app/models/equipe';
+import { Categorie } from 'src/app/models/categorie';
 import { Config } from 'src/app/utilitaire/config.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EquipeService {
+export class CategorieService {
 
   uri = Config.getBaseUrlOracle()+"/";
   constructor(private http:HttpClient,private router:Router) { }
 
-  getEquipe():Observable<Equipe[]> {
-    return this.http.get<Equipe[]>(this.uri+"Equipes");
+  getCategorie():Observable<Categorie[]> {
+    return this.http.get<Categorie[]>(this.uri+"Categories");
   }
-  getEquipeById(id : String):Observable<Equipe> {
-    return this.http.get<Equipe>(this.uri+"Equipes/"+id);
+  getCategorieById(id : String):Observable<Categorie> {
+    return this.http.get<Categorie>(this.uri+"Categories/"+id);
   }
  
 
-  updateEquipeById(equipeToUpdated: Equipe,file):Observable<Equipe>{
+  updateCategorieById(equipeToUpdated: Categorie,file):Observable<Categorie>{
     const formData = new FormData();
     console.log("file--- : "+file);
     formData.append('file', file);
@@ -30,17 +30,17 @@ export class EquipeService {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     if(file === undefined || file === null){
-      return this.http.put<Equipe>(this.uri + "Equipes",equipeToUpdated);
+      return this.http.put<Categorie>(this.uri + "Categories",equipeToUpdated);
     }else{
-      return this.http.post<Equipe>(this.uri + "Equipes/Update/",formData,{headers});
+      return this.http.post<Categorie>(this.uri + "Categorie/Update/",formData,{headers});
     }
     
   }
-  deleteEquipeById(id:String):Observable<any>{
-    return this.http.delete<any>(this.uri + "Equipes/Delete/" + id);
+  deleteCategorieById(id:String):Observable<any>{
+    return this.http.delete<any>(this.uri + "Categorie/Delete/" + id);
   }
 
-  createEquipe(equipeToSelected: Equipe,file){
+  createCategorie(equipeToSelected: Categorie,file){
     const formData = new FormData();
     formData.append('file', file);
     formData.append('equipe' , JSON.stringify(equipeToSelected));
@@ -48,9 +48,9 @@ export class EquipeService {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     if(file === undefined || file === null){
-      return this.http.post<Equipe>(this.uri + "Equipes",equipeToSelected);
+      return this.http.post<Categorie>(this.uri + "Categories",equipeToSelected);
     }else{
-      return this.http.post<Equipe>(this.uri + "Equipes/Insert/",formData,{headers});
+      return this.http.post<Categorie>(this.uri + "Categorie/Insert/",formData,{headers});
     }
    
   }
