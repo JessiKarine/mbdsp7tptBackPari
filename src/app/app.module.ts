@@ -48,7 +48,7 @@ import { DeconnexionComponent } from './page/deconnexion/deconnexion/deconnexion
 import { EquipeFicheComponent } from './page/equipe/equipe-fiche/equipe-fiche/equipe-fiche.component';
 import { Equipe } from './models/equipe';
 import { EquipeSaisieComponent } from './page/equipe/equipe-saisie/equipe-saisie/equipe-saisie.component';
-
+import { GoogleChartsModule } from 'angular-google-charts';
 
 const routes:Routes = [
   {
@@ -174,7 +174,8 @@ const routes:Routes = [
     MatSlideToggleModule,
     RouterModule.forRoot(routes), HttpClientModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    GoogleChartsModule  
   ],
   declarations: [
     AppComponent,
@@ -203,7 +204,8 @@ const routes:Routes = [
     DeconnexionComponent,
     EquipeComponent,
     EquipeFicheComponent,
-    EquipeSaisieComponent
+    EquipeSaisieComponent,
+    DashboardComponent
     ],
   
   providers: [],
