@@ -1,12 +1,16 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { MatchService } from '../../../services/Match/Match.service';
+import { EquipeService } from '../../../services/equipe/equipe.service';
+import { CategorieService } from '../../../services/categorie/categorie.service';
 import { Match } from '../../../models/Match';
+import { Equipe } from '../../../models/Equipe';
+import { Categorie } from '../../../models/Categorie';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-
+declare var $:any ; 
 export interface DialogData {
   description: string;
   titre: string ;
@@ -26,10 +30,18 @@ export class MatchdetailComponent implements OnInit {
   titre:String;
   description:String;
   
+  form_eq1 : string;
+  form_eq2 : string;
+  form_categ : string;
+  
+  equipeList: Equipe[];
+  categorieList: Categorie[];
 
   constructor(private route: ActivatedRoute,
               public dialog: MatDialog,
               private matchService: MatchService,
+              private equipeService: EquipeService,
+              private categorieService: CategorieService,
               private spinner: NgxSpinnerService
               , private router: Router) { }
  
@@ -64,6 +76,46 @@ export class MatchdetailComponent implements OnInit {
                          width: '250px',
                          data: {titre: this.titre, description: this.description,typeOperation: type,idUser:this.idMatch, matchData: this.matchSelected}
                      });
+  }
+  toggleModalCategorie(): void { 
+    this.getAllCategorie();
+    $('#modalCategorie').modal('show');
+  }
+  toggleModalEquipe1(): void { 
+    this.getAllEquipe();
+    $('#modalUser').modal('show');
+  }
+  toggleModalEquipe2(): void { 
+    this.getAllEquipe();
+    $('#modalEquipe2').modal('show');
+  }
+  savePopupEquipe1(){
+    this.matchSelected.idequipe1 = JSON.parse(this.form_eq1);
+    $('#modalUser').modal('hide');
+  }
+  savePopupEquipe2(){
+    this.matchSelected.idequipe2 = JSON.parse(this.form_eq2);
+    $('#modalEquipe2').modal('hide');
+  }
+  savePopupCategorie(){
+    this.matchSelected.idcategorie = JSON.parse(this.form_categ);
+    $('#modalCategorie').modal('hide');
+  }
+  getAllEquipe(){
+    this.spinner.show();
+    this.equipeService.getEquipe()
+        .subscribe(data => {
+          this.spinner.hide();
+            this.equipeList = data as Equipe[];
+        });
+  }
+  getAllCategorie(){
+    this.spinner.show();
+    this.categorieService.getCategorie()
+        .subscribe(data => {
+          this.spinner.hide();
+            this.categorieList = data as Categorie[];
+        });
   }
 }
 
@@ -123,5 +175,6 @@ export class DialogOverviewExampleDialog {
               this.router.navigate(["/Match"]);
           })
     }
+    
 
 }
