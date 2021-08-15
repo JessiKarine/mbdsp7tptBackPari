@@ -15,29 +15,44 @@
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Categorie</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Categorie"  [(ngModel)]="idcategorie" name="idcategorie"/>
+                            <div class="input-group col-sm-10">
+                                <span class="input-group-text" id="basic-addon1" (click) = "toggleModalCategorie()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                    </svg>
+                                </span>
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Categorie"  [(ngModel)]="form_categ" name="form_categ" disabled value="{{matchToCreate?.idcategorie?.nom}}"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Equipe 1</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Equipe 1" [(ngModel)]="idequipe1" name="idequipe1">
+                            <div class="input-group col-sm-10">
+                                <span class="input-group-text" id="basic-addon1" (click) = "toggleModalEquipe1()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                    </svg>
+                                </span>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Equipe 1" [(ngModel)]="form_eq1" name="form_eq1" disabled value="{{matchToCreate?.idequipe1?.nom}}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Equipe 2</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Equipe 2" [(ngModel)]="idequipe2" name="idequipe2">
+                            <div class="input-group col-sm-10">
+                                <span class="input-group-text" id="basic-addon1" (click) = "toggleModalEquipe2()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                    </svg>
+                                </span>
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Equipe 2" [(ngModel)]="form_eq2" disabled value="{{matchToCreate?.idequipe2?.nom}}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Date</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Date" [(ngModel)]="date" name="date">
+                                <input type="date" class="form-control" id="inputEmail3" placeholder="Date" [(ngModel)]="date" name="date">
                             </div>
                         </div>
 
@@ -50,19 +65,19 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Cote équipe 1</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="coteequipe1" [(ngModel)]="coteequipe1" name="coteequipe1">
+                                <input type="number" class="form-control" id="inputEmail3" placeholder="coteequipe1" [(ngModel)]="coteequipe1" name="coteequipe1">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Cote équipe 2</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="coteequipe2" [(ngModel)]="coteequipe2" name="coteequipe2">
+                                <input type="number" class="form-control" id="inputEmail3" placeholder="coteequipe2" [(ngModel)]="coteequipe2" name="coteequipe2">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Cote match null</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="coteMatchNull" [(ngModel)]="coteMatchNull" name="coteMatchNull">
+                                <input type="number" class="form-control" id="inputEmail3" placeholder="coteMatchNull" [(ngModel)]="coteMatchNull" name="coteMatchNull">
                             </div>
                         </div>
                         <div class="form-group">
@@ -90,4 +105,107 @@
         </div>
     </div>
 </div>
+
+<!--Modal Equipe-->
+<div class="modal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Liste équipes</h4>
+        </div>
+        <div class="modal-body">
+            <form  >
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let equipe of equipeList">
+                        <td><input type="radio" value="{{equipe | json}}" [(ngModel)]="form_eq1" name="eq1_{{equipe._id}}"/></td>
+                        <td scope="row">{{equipe.nom}}</td>
+                    </tr>
+                </tbody>
+            </table>  
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary" (click) = "savePopupEquipe1()">Enregister</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal user -->
+<!--End modal Equipe-->
+<!--Modal eq 2-->
+<div class="modal fade" id="modalEquipe2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Liste équipes</h4>
+        </div>
+        <div class="modal-body">
+            <form  >
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let equipe of equipeList">
+                        <td><input type="radio" value="{{equipe | json}}" [(ngModel)]="form_eq2" name="eq2_{{equipe._id}}"/></td>
+                        <td scope="row">{{equipe.nom}}</td>
+                    </tr>
+                </tbody>
+            </table>  
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary" (click) = "savePopupEquipe2()">Enregister</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal user -->
+<!--End modal eq 2-->
+<!--Modal categorie-->
+<div class="modal fade" id="modalCategorie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Liste catégories</h4>
+        </div>
+        <div class="modal-body">
+            <form  >
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let categorie of categorieList">
+                        <td><input type="radio" value="{{categorie | json}}" [(ngModel)]="form_categ" name="eq2_{{categorie._id}}"/></td>
+                        <td scope="row">{{categorie.nom}}</td>
+                    </tr>
+                </tbody>
+            </table>  
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary" (click) = "savePopupCategorie()">Enregister</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal user -->
+<!--End modal categorie-->
 <app-footer></app-footer>
