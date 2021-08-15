@@ -9,14 +9,14 @@ import { GoogleChartComponent } from 'angular-google-charts';
 })
 export class DashboardComponent implements OnInit {
 
-  title = 'googlechart';  
+  title = 'Flux parieurs';  
   type = 'AreaChart';  
   data = [  
-     ['Name1', 5.0],  
-     ['Name2', 36.8],  
-     ['Name3', 42.8],  
-     ['Name4', 18.5],  
-     ['Name5', 16.2]  
+     ['10/08/2021', 5.0],  
+     ['11/08/2021', 15],  
+     ['12/08/2021', 48],  
+     ['13/08/2021', 90],  
+     ['14/08/2021', 63]  
   ];  
   //columnNames = ['Name', 'Percentage'];  
   options = {      
