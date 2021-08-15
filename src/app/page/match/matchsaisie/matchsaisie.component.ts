@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-
+declare var $:any ; 
 export interface DialogData {
   description: string;
   titre: string ;
@@ -26,13 +26,13 @@ export interface DialogData {
 })
 export class MatchsaisieComponent implements OnInit {
   idcategorie : string;
-  coteMatchNull : string ;
+  coteMatchNull : Number ;
   coteequipe2 : Number ;
   coteequipe1 : Number ;
   heure : string ;
   date : string ;
-  idequipe1 : string ;
-  idequipe2 : string ;
+  /*idequipe1 : string ;
+  idequipe2 : string ;*/
   etat : string ;
   
   idMatch : String;
@@ -40,10 +40,16 @@ export class MatchsaisieComponent implements OnInit {
   titre:String;
   description:String;
 
-  eq1: Equipe;
-  eq2: Equipe;
+  /*eq1: Equipe;
+  eq2: Equipe;*/
   categorie : Categorie;
+
+  form_eq1 : string;
+  form_eq2 : string;
+  form_categ : string;
   
+  equipeList: Equipe[];
+  categorieList: Categorie[];
 
   constructor(private route: ActivatedRoute,
               public dialog: MatDialog,
@@ -57,132 +63,61 @@ export class MatchsaisieComponent implements OnInit {
     this.idMatch = this.route.snapshot.paramMap.get('id');
     this.matchToCreate=new Match();
     
-    //this.getMatchById(this.idMatch);
   }
   createMatch(){
     this.spinner.show();
-    
-    this.findEquipe1ById(this.idequipe1);
-    this.findEquipe2ById(this.idequipe2);
-    this.findCategorie(this.idcategorie);
 
     this.matchToCreate.heure=this.heure;
     this.matchToCreate.date=this.date;
     this.matchToCreate.etat=this.etat;
     this.matchToCreate.coteequipe1=this.coteequipe1;
     this.matchToCreate.coteequipe2=this.coteequipe2;
-    this.matchToCreate.idequipe1=this.eq1;
-    this.matchToCreate.idequipe2=this.eq2;
-    this.matchToCreate.idcategorie=this.categorie;
-    console.log("categorie dans matchsaisiecomponent=="+this.matchToCreate.idcategorie)
+    this.matchToCreate.coteMatchNull=this.coteMatchNull;
+    console.log("categorie dans matchsaisiecomponent=="+this.matchToCreate.idcategorie.nom)
     this.matchService.createMatch(this.matchToCreate)  
       .subscribe(match => {
         this.router.navigate(["/Match/" ]);
         this.spinner.hide();
     })
   }
-  findCategorie(idCategorie:String){
-    this.categorieService.getCategorieById(idCategorie)
-        .subscribe(categorie => {
-          this.categorie = categorie as Categorie;
-        })
+  toggleModalCategorie(): void { 
+    this.getAllCategorie();
+    $('#modalCategorie').modal('show');
   }
-  findEquipe1ById(idEquipe:String){
-    this.equipeService.getEquipeById(idEquipe)
-        .subscribe(equipe => {
-          this.eq1 = equipe as Equipe;
-        })
+  toggleModalEquipe1(): void { 
+    this.getAllEquipe();
+    $('#modalUser').modal('show');
   }
-  findEquipe2ById(idEquipe:String){
-    this.equipeService.getEquipeById(idEquipe)
-        .subscribe(equipe => {
-          this.eq2 = equipe as Equipe;
-        })
+  toggleModalEquipe2(): void { 
+    this.getAllEquipe();
+    $('#modalEquipe2').modal('show');
   }
-  /*getMatchById(idMatch:String){
-    this.matchService.getMatchById(idMatch)
-        .subscribe(match => {
-            this.matchSelected = match as Match;
-        })
-  }*/
-
-  /*openDialog(type:Number): void {
-    console.log('Entree dans dialog avec type==='+type);
-    switch(type){
-        case 0:
-            this.titre = "Modification";
-            this.description = "Êtes-vous sur de modifier ?";
-            break;
-        case 1:
-            this.titre = "Suppression",
-            this.description = "Êtes-vous sur de supprimer ?";
-            break;
-        default:
-            console.log("default opération");
-    }
-
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-                         width: '250px',
-                         data: {titre: this.titre, description: this.description,typeOperation: type,idUser:this.idMatch, matchData: this.matchSelected}
-                     });
-  }*/
+  savePopupEquipe1(){
+    this.matchToCreate.idequipe1 = JSON.parse(this.form_eq1);
+    $('#modalUser').modal('hide');
+  }
+  savePopupEquipe2(){
+    this.matchToCreate.idequipe2 = JSON.parse(this.form_eq2);
+    $('#modalEquipe2').modal('hide');
+  }
+  savePopupCategorie(){
+    this.matchToCreate.idcategorie = JSON.parse(this.form_categ);
+    $('#modalCategorie').modal('hide');
+  }
+  getAllEquipe(){
+    this.spinner.show();
+    this.equipeService.getEquipe()
+        .subscribe(data => {
+          this.spinner.hide();
+            this.equipeList = data as Equipe[];
+        });
+  }
+  getAllCategorie(){
+    this.spinner.show();
+    this.categorieService.getCategorie()
+        .subscribe(data => {
+          this.spinner.hide();
+            this.categorieList = data as Categorie[];
+        });
+  }
 }
-
-/*@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
-})
-export class DialogOverviewExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private spinner: NgxSpinnerService,
-    private router: Router,
-    private matchService: MatchService,) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  // parametre number 0 = update et 1 = deleted;
-  onAction(type:Number) : void {
-    //this.spinner.show();
-    switch(type){
-        case 0:
-            console.log('update-idMatch='+this.data.idUser);
-            this.onUpdate(this.data.idUser, this.data.matchData as Match)
-            break;
-        case 1:
-            console.log('delete');
-            this.onDelete(this.data.idUser);
-            break;
-        default:
-            console.log('default modal');
-    }
-    //console.log("ok pour action => " + (this.data.utilisateurData as Utilisateur).prenom);
-  }
-
-  onUpdate(idMatch:String,  match: Match){
-      this.spinner.show();
-      console.log('heure==='+match.heure);
-      this.matchService.updateMatchById(idMatch, match)
-          .subscribe(match => {
-             this.spinner.hide();
-             this.dialogRef.close();
-             this.router.navigate(["/Match"]);
-
-          })
-    }
-
-    onDelete(idMatch:String){
-      this.spinner.show();
-      this.matchService.deleteMatchById(idMatch)
-          .subscribe(() => {
-              console.log("match deleted");
-              this.dialogRef.close();
-              this.spinner.hide();
-              this.router.navigate(["/Match"]);
-          })
-    }
-
-}*/
