@@ -37,7 +37,7 @@ export class CategorieService {
     
   }
   deleteCategorieById(id:String):Observable<any>{
-    return this.http.delete<any>(this.uri + "Categorie/Delete/" + id);
+    return this.http.delete<any>(this.uri + "Categories/Delete/" + id);
   }
 
   createCategorie(equipeToSelected: Categorie,file){
