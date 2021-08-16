@@ -10,6 +10,7 @@ import { EquipeService } from 'src/app/services/equipe/equipe.service';
 })
 export class EquipeComponent implements OnInit {
   equipeList;
+  searchedTerm : String;
   constructor(private equipeService : EquipeService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
@@ -25,6 +26,9 @@ export class EquipeComponent implements OnInit {
       this.spinner.hide();
 
   });
+  }
+  updateSearchFilter(newFilter : string) { 
+    this.searchedTerm = newFilter
   }
 
 }
