@@ -19,6 +19,7 @@ export class PariComponent implements OnInit {
   prevPage: number;
   hasNextPage: boolean;
   nextPage: number;
+  searchedTerm : String;
   constructor( private router:Router,private pariService : PariService,
      private spinner: NgxSpinnerService, private route:ActivatedRoute,) { }
 
@@ -31,6 +32,9 @@ export class PariComponent implements OnInit {
     });
   }
 
+  updateSearchFilter(newFilter : string) { 
+    this.searchedTerm = newFilter
+  }
   getParis() {
     this.spinner.show();
     this.pariService.getParis(this.page, this.limit)

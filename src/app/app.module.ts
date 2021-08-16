@@ -49,6 +49,7 @@ import { EquipeFicheComponent } from './page/equipe/equipe-fiche/equipe-fiche/eq
 import { Equipe } from './models/equipe';
 import { EquipeSaisieComponent } from './page/equipe/equipe-saisie/equipe-saisie/equipe-saisie.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { FilterTabPipe } from './pipe/filter-tab.pipe';
 
 const routes:Routes = [
   {
@@ -205,7 +206,8 @@ const routes:Routes = [
     EquipeComponent,
     EquipeFicheComponent,
     EquipeSaisieComponent,
-    DashboardComponent
+    DashboardComponent,
+    FilterTabPipe
     ],
   
   providers: [],

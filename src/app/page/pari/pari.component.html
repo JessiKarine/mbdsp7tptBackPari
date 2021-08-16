@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header (searchChanged)="updateSearchFilter($event)"></app-header>
 <ngx-spinner></ngx-spinner>
 	<div class="page-content">
 		<div class="row">
@@ -8,7 +8,7 @@
 			<div class="col-md-10">
 				<div class="content-box-large">
 					<div class="panel-heading">
-						<div class="panel-title">Liste des paris</div>
+						<div class="panel-title">Liste des pari</div>
 						<div class="panel-options">
 							<a href="/PariSaisie" class="btn btn btn-primary">Creation</a>            
 						</div>
@@ -29,15 +29,15 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor = "let paris of pariList ">
+									<tr *ngFor = "let paris of pariList |filterTab:searchedTerm">
 										<td><a href="/Pari/{{paris._id}}">{{paris.idUser.prenom}}</a></td>
 										<td>{{paris.mise}}</td>
 										<td>{{paris.idEquipe?.nom}}</td>
-										<td>{{paris.idMatch.idcategorie.nom}}</td>
-										<td>{{paris.idMatch.idequipe1.nom+" - "+paris.idMatch.coteequipe1}}</td>
-										<td>{{paris.idMatch.coteMatchNull}}</td>
-										<td>{{paris.idMatch.idequipe2.nom+" - "+paris.idMatch.coteequipe2}}</td>
-										<td>{{(paris.idMatch.date | date) +" "+paris.idMatch.heure}}</td>
+										<td>{{paris.idMatch?.idcategorie.nom}}</td>
+										<td>{{paris.idMatch?.idequipe1.nom+" - "+paris.idMatch?.coteequipe1}}</td>
+										<td>{{paris.idMatch?.coteMatchNull}}</td>
+										<td>{{paris.idMatch?.idequipe2.nom+" - "+paris.idMatch?.coteequipe2}}</td>
+										<td>{{(paris.idMatch?.date | date) +" "+paris.idMatch?.heure}}</td>
 									</tr>
 								</tbody>
 							</table>
