@@ -11,6 +11,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class RoleComponent implements OnInit {
 
   roleList = null;
+  searchedTerm : String;
   constructor(private roleService:RoleService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
@@ -26,6 +27,10 @@ export class RoleComponent implements OnInit {
             this.spinner.hide();
 
         });
+  }
+
+  updateSearchFilter(newFilter : string) { 
+    this.searchedTerm = newFilter
   }
 
 }
