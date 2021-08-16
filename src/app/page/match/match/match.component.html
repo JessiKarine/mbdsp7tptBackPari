@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header (searchChanged)="updateSearchFilter($event)"></app-header>
 <ngx-spinner></ngx-spinner>
 <div class="page-content">
     <div class="row">
@@ -32,7 +32,7 @@
                             <tbody>
                 
                 
-                            <tr *ngFor="let match of matchList">
+                            <tr *ngFor="let match of matchList |filterTab:searchedTerm">
                                 <td><a href="/Match/{{ match._id }}">{{ match.idcategorie.nom }}</a></td>
                                 <td>{{ match.idequipe1.nom }}</td>
                                 <td>{{ match.idequipe2.nom }}</td>

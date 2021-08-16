@@ -31,6 +31,9 @@ export class MatchComponent implements OnInit {
     });
    
   }
+  updateSearchFilter(newFilter : string) { 
+    this.searchedTerm = newFilter
+  }
 
   //récupération la liste des match
   getAllMatch(){
