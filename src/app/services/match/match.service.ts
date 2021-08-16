@@ -30,6 +30,11 @@ export class MatchService {
     return this.http.put<Match>(this.uri + id, matchToUpdated);
   }
 
+  getMatchPaginer(page:number, limit:number):Observable<any>{
+    console.log("Récupération de la liste des matches paginer");
+    return this.http.get<Match[]>(this.uri+"getMatchPaginer?page="+page + "&limit="+limit);
+  }
+
 
  // delete match by id
   deleteMatchById(id:String):Observable<any>{

@@ -13,7 +13,57 @@
                         <a href="/Matchsaisie" class="btn btn btn-primary">Creation</a>
                     </div>
                 </div>
-                <app-matchtableaubody [matchList]="matchList"></app-matchtableaubody>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Catégorie</th>
+                                <th>Equipe 1</th>
+                                <th>Equipe 2</th>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Cote Equipe 1</th>
+                                <th>Cote Equipe 2</th>
+                                <th>Cote Match nul</th>
+                                <th>Etat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                
+                
+                            <tr *ngFor="let match of matchList">
+                                <td><a href="/Match/{{ match._id }}">{{ match.idcategorie.nom }}</a></td>
+                                <td>{{ match.idequipe1.nom }}</td>
+                                <td>{{ match.idequipe2.nom }}</td>
+                                <td>{{ match.date | date}}</td>
+                                <td>{{ match.heure }}</td>
+                                <td>{{ match.coteequipe1 }}</td>
+                                <td>{{ match.coteequipe2 }}</td>
+                                <td>{{ match.coteMatchNull }}</td>
+                                <td>{{ match.etat }}</td>
+                            </tr>
+                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <nav>
+                           <button mat-raised-button color="primary" (click)="premierePage()">
+                              Première
+                           </button>
+                           <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+                              Prev
+                           </button>
+                           <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+                              Suiv
+                           </button>
+                           <button mat-raised-button color="primary" (click)="dernierePage()">
+                              Dernière
+                           </button>
+                           </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
