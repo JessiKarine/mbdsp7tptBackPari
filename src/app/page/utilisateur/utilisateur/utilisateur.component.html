@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header (searchChanged)="updateSearchFilter($event)"></app-header>
 <ngx-spinner></ngx-spinner>
 <div class="page-content">
     <div class="row">
@@ -13,7 +13,31 @@
                         <a href="/PariSaisie" class="btn btn btn-primary">Creation</a>
                     </div>
                 </div>
-                <app-utilisateurtableaubody [utilisateurList]="utilisateurList"></app-utilisateurtableaubody>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom(s)</th>
+                                <th>Email</th>
+                                <th>Login</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                
+                
+                            <tr *ngFor="let utilisateur of utilisateurList |filterTab:searchedTerm">
+                                <td><a href="/Utilisateur/{{ utilisateur._id }}">{{ utilisateur.nom }}</a></td>
+                                <td>{{ utilisateur.prenom }}</td>
+                                <td>{{ utilisateur.email }}</td>
+                                <td>{{ utilisateur.login }}</td>
+                            </tr>
+                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

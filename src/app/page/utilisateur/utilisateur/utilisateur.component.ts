@@ -11,6 +11,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class UtilisateurComponent implements OnInit {
 
   utilisateurList = null;
+  searchedTerm : String;
   constructor(private utilisateurService:UtilisateurService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
@@ -27,6 +28,10 @@ export class UtilisateurComponent implements OnInit {
             this.spinner.hide();
 
         });
+  }
+
+  updateSearchFilter(newFilter : string) { 
+    this.searchedTerm = newFilter
   }
 
 }
