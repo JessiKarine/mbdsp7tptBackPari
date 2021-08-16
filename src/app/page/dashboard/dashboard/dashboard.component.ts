@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { GoogleChartComponent } from 'angular-google-charts'; 
+import { PariService } from 'src/app/services/pari/pari.service';
+import { Dashboard } from 'src/app/models/Dashboard';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,22 +12,36 @@ import { GoogleChartComponent } from 'angular-google-charts';
 export class DashboardComponent implements OnInit {
 
   title = 'Flux parieurs';  
-  type = 'AreaChart';  
+  type = 'PieChart';  
   data = [  
-     ['10/08/2021', 5.0],  
-     ['11/08/2021', 15],  
-     ['12/08/2021', 48],  
-     ['13/08/2021', 90],  
-     ['14/08/2021', 63]  
+   
   ];  
   //columnNames = ['Name', 'Percentage'];  
   options = {      
   };  
-  width = 500;  
-  height = 300;
-  constructor(private spinner: NgxSpinnerService) { }
+  width = 1000;  
+  height = 500;
+  constructor(private spinner: NgxSpinnerService,private pariService : PariService) { }
 
   ngOnInit(): void {
+    this.countpariParMatch();
+  }
+
+  countpariParMatch(){
+    this.spinner.show();
+    this.pariService.countpariParMatch()
+    .subscribe((data : Dashboard[]) => {
+        console.log("data dashboard : ", data);
+        let newData  = [];
+        data.forEach((item) => { 
+            let tempData = [];
+            tempData.push(`(${item._id.idcategorie.nom}) ${item._id.idequipe1.nom} VS ${item._id.idequipe2.nom}`);
+            tempData.push(item.count);
+            newData.push(tempData);
+        });
+        this.data = newData;
+        this.spinner.hide();
+    })
   }
 
 }

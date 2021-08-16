@@ -31,4 +31,8 @@ export class PariService {
     return this.http.post<Pari>(this.uri + "insert" , pariToInsert);
   }
 
+  countpariParMatch():Observable<any>{
+    return this.http.get(this.uri+"countPariParMatch/");
+  }
+
 }

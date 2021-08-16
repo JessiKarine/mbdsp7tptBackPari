@@ -34,5 +34,4 @@ export class UtilisateurService {
     return this.http.delete<any>(this.uri + "/" + idUser);
   }
 
-
 }
