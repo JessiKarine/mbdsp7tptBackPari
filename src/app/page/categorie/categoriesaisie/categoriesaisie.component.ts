@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { CategorieService } from '../../../services/Categorie/Categorie.service';
+import { CategorieService } from '../../../services/categorie/Categorie.service';
 import { Categorie } from '../../../models/categorie';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
