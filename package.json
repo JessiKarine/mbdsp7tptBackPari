@@ -1,5 +1,5 @@
 {
-  "name": "front-pari-tpt",
+  "name": "back-pari-tpt",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
