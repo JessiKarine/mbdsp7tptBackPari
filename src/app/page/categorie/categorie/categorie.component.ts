@@ -9,7 +9,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./categorie.component.css']
 })
 export class CategorieComponent implements OnInit {
-
+  searchedTerm : String;
   categorieList = null;
   constructor(private categorieService:CategorieService, private spinner: NgxSpinnerService) { }
 
@@ -27,6 +27,10 @@ export class CategorieComponent implements OnInit {
             this.spinner.hide();
 
         });
+  }
+
+  updateSearchFilter(newFilter : string) { 
+    this.searchedTerm = newFilter
   }
 
 }
