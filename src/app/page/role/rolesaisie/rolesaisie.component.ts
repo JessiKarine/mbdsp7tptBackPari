@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import { ActivatedRoute ,Router} from '@angular/router'
 import { RoleService } from '../../../services/role/role.service';
-import { Role } from '../../../models/Role';
+import { Role } from '../../../models/role';
 import { NgxSpinnerService } from "ngx-spinner";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
