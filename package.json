@@ -1,6 +1,9 @@
 {
   "name": "back-pari-tpt",
   "version": "0.0.0",
+  "engines" : {
+    "node":"14.17.2"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
