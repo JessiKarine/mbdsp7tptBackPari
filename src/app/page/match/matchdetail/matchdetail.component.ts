@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router'
 import { MatchService } from '../../../services/Match/Match.service';
 import { EquipeService } from '../../../services/equipe/equipe.service';
 import { CategorieService } from '../../../services/categorie/categorie.service';
-import { Match } from '../../../models/Match';
-import { Equipe } from '../../../models/Equipe';
-import { Categorie } from '../../../models/Categorie';
+import { Match } from '../../../models/match';
+import { Equipe } from '../../../models/equipe';
+import { Categorie } from '../../../models/categorie';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
