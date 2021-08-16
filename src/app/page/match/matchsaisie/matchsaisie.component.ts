@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { MatchService } from '../../../services/match/Match.service';
-import { EquipeService } from '../../../services/equipe/Equipe.service';
-import { CategorieService } from '../../../services/categorie/Categorie.service';
+import { MatchService } from '../../../services/match/match.service';
+import { EquipeService } from '../../../services/equipe/equipe.service';
+import { CategorieService } from '../../../services/categorie/categorie.service';
 import { Match } from '../../../models/match';
 import { Equipe } from '../../../models/equipe';
 import { Categorie } from '../../../models/categorie';
