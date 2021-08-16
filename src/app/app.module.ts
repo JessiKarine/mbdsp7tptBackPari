@@ -50,6 +50,7 @@ import { Equipe } from './models/equipe';
 import { EquipeSaisieComponent } from './page/equipe/equipe-saisie/equipe-saisie/equipe-saisie.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { FilterTabPipe } from './pipe/filter-tab.pipe';
+import { UtilisateurSaisieComponent } from './page/utilisateur/utilisateur-saisie/utilisateur-saisie.component';
 
 const routes:Routes = [
   {
@@ -162,6 +163,12 @@ const routes:Routes = [
     component: EquipeSaisieComponent,
     canActivate : [AuthGuard]
   }
+  ,
+  {
+    path:"UtilisateurSaisie",
+    component: UtilisateurSaisieComponent,
+    canActivate : [AuthGuard]
+  }
  
 ]
 @NgModule({
@@ -207,7 +214,8 @@ const routes:Routes = [
     EquipeFicheComponent,
     EquipeSaisieComponent,
     DashboardComponent,
-    FilterTabPipe
+    FilterTabPipe,
+    UtilisateurSaisieComponent
     ],
   
   providers: [],
